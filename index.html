@@ -116,3 +116,30 @@
       });
 
       // Scrub
+      progress.addEventListener('input', () => {
+        audio.currentTime = progress.value;
+      });
+
+      // Rewind
+      rewind.addEventListener('click', () => {
+        audio.currentTime = Math.max(0, audio.currentTime - 10);
+      });
+
+      // Fast forward
+      forward.addEventListener('click', () => {
+        audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+      });
+
+      wrapper.appendChild(title);
+      wrapper.appendChild(button);
+      wrapper.appendChild(rewind);
+      wrapper.appendChild(progress);
+      wrapper.appendChild(forward);
+      wrapper.appendChild(timeLabel);
+
+      playlist.appendChild(wrapper);
+    });
+  </script>
+
+</body>
+</html>
