@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Donda 2 - Audio Stack</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sometype+Mono&display=swap');
+
+    body {
+      background-color: #fff;
+      color: #000;
+      font-family: 'Sometype Mono', monospace;
+      font-size: 12px;
+      padding: 40px;
+    }
+
+    .track {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .track-title {
+      width: 200px;
+    }
+
+    .play-pause {
+      font-size: 20px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="playlist"></div>
+
+  <script>
+    const tracks = [
+      { title: 'TRUE LOVE', file: '01 TRUE LOVE.mp3' },
+      { title: 'BROKEN ROAD', file: '02 BROKEN ROAD.mp3' },
+      { title: 'GET LOST', file: '03 GET LOST.mp3' },
+      { title: 'KEEP THE FLOWERS', file: '04 KEEP THE FLOWERS.mp3' },
+      { title: 'TOO EASY', file: '05 TOO EASY.mp3' },
+      { title: 'PABLO', file: 'pablo.mp3' }
+    ];
+
+    const playlist = document.getElementById('playlist');
+
+    tracks.forEach((track) => {
+      const trackDiv = document.createElement('div');
+      trackDiv.className = 'track';
+
+      const title = document.createElement('div');
+      title.className = 'track-title';
+      title.textContent = track.title;
+
+      const button = document.createElement('div');
+      button.className = 'play-pause';
+      button.textContent = '⏵';
+
+      const audio = new Audio(track.file);
+
+      button.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play();
+          button.textContent = '⏸';
+        } else {
+          audio.pause();
+          button.textContent = '⏵';
+        }
+      });
+
+      trackDiv.appendChild(title);
+      trackDiv.appendChild(button);
+      playlist.appendChild(trackDiv);
+    });
+  </script>
+
+</body>
+</html>
